@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row">
+
+    <!--Body content-->
+    <header>
+      <!-- <div class="div_form_inline"> -->
+        <div class="form-inline">
+            <div class="form-group " ng-class = "(phones | filter:query | orderBy:orderProp).length == 0 ?'has-error':'has-success'" >
+                <label for="exampleInput">Search:</label>
+                <input ng-model="query" type="text" class="form-control" id="exampleInput" placeholder="Search text" >
+                <select class="form-control input-sm sort_sel" style="display: none" ng-model="orderProp">
+                    <option value="name">Alphabetical</option>
+                    <option value="age">Newest</option>
+                </select>
+            </div>
+              <div class="form-group sort_by" ng-class = "(phones | filter:query | orderBy:orderProp).length == 0 ?'has-error':'has-success'">
+                  <label for="">Sort by:</label>
+                    <select class="form-control input-sm" ng-model="orderProp">
+                        <option value="name">Alphabetical</option>
+                        <option value="age">Newest</option>
+                    </select>
+              </div>
+        </div>
+        <div class="matches"><span ng-class = "(phones | filter:query | orderBy:orderProp).length == 0 ?'warn':'sucs'">{{(phones | filter:query | orderBy:orderProp).length}}</span></div>
+      <!-- </div> -->
+    </header>
+    
+      <ul class="phones">
+        <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" class="thumbnail phone-listing" ng-href="#/phones/{{phone.id}}">
+          <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
+          <a href="#/phones/{{phone.id}}" class="a_str">{{phone.name}}</a>
+          <p>{{phone.snippet}}</p>
+        </li>
+      </ul>
+  </div>
+</div>
